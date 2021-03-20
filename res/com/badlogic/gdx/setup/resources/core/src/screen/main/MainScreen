@@ -3,22 +3,22 @@ package %PACKAGE%.screen.main;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import %PACKAGE%.payment.CustomPurchaseObserver;
 import %PACKAGE%.payment.base.CustomPurchaseManager;
 import com.kendao.libgdx.assets.CustomAssetManager;
 import com.kendao.libgdx.screen.base.CustomBaseScreen;
+import com.kendao.libgdx.scenes.scene2d.ui.CustomImage;
 
 public class MainScreen extends CustomBaseScreen {
-  private Image image;
+  private CustomImage image;
 
   public MainScreen() {
   }
 
   @Override
   protected void load() {
-    this.image = new Image(CustomAssetManager.getInstance().getTexture("badlogic.jpg"));
+    this.image = new CustomImage(CustomAssetManager.getInstance().getTexture("badlogic.jpg"));
 
     this.image.addListener(new ClickListener(){
       @Override
