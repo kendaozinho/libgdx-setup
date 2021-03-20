@@ -5,7 +5,6 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.pay.OfferType;
 import com.badlogic.gdx.pay.PurchaseManager;
-import com.badlogic.gdx.utils.ScreenUtils;
 import %PACKAGE%.listener.AdsListener;
 import %PACKAGE%.payment.CustomPurchaseObserver;
 import %PACKAGE%.screen.splash.SplashScreen;
@@ -54,15 +53,15 @@ public class %MAIN_CLASS% extends ApplicationAdapter implements CustomGameListen
 
     // Load Custom Purchase Manager
     this.instances.put(
-      CustomPurchaseManager.class,
-      new CustomPurchaseManager(this.purchaseManager) {{
-        super.install(
-          new CustomPurchaseObserver(),
-          new HashMap<OfferType, String>() {{
-            super.put(OfferType.ENTITLEMENT, CustomPurchaseObserver.ID_OF_ADS);
-          }}
-        );
-      }}
+        CustomPurchaseManager.class,
+        new CustomPurchaseManager(this.purchaseManager) {{
+          super.install(
+              new CustomPurchaseObserver(),
+              new HashMap<OfferType, String>() {{
+                super.put(OfferType.ENTITLEMENT, CustomPurchaseObserver.ID_OF_ADS);
+              }}
+          );
+        }}
     );
 
     // Load asset manager
@@ -126,5 +125,17 @@ public class %MAIN_CLASS% extends ApplicationAdapter implements CustomGameListen
   public <T> T getInstanceOf(Class<T> clazz) {
     Object instance = this.instances.get(clazz);
     return (instance == null ? null : (T) instance);
+  }
+
+  public void showAds() {
+    if (this.adsListener != null) {
+      this.adsListener.showAds();
+    }
+  }
+
+  public void hideAds() {
+    if (this.adsListener != null) {
+      this.adsListener.hideAds();
+    }
   }
 }

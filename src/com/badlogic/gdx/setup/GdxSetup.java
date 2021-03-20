@@ -277,6 +277,9 @@ public class GdxSetup {
 		project.files.add(new ProjectFile("android/assets/ui/default-skin.json", assetPath + "/ui/default-skin.json", false));
 		project.files.add(new ProjectFile("android/assets/ui/default-skin.png", assetPath + "/ui/default-skin.png", false));
 
+		project.files.add(new ProjectFile("android/assets/audio/sounds/confirm.mp3", assetPath + "/audio/sounds/confirm.mp3", false));
+		project.files.add(new ProjectFile("android/assets/audio/sounds/cancel.mp3", assetPath + "/audio/sounds/cancel.mp3", false));
+
 		// android project
 		if (builder.modules.contains(ProjectType.ANDROID)) {
 			project.files.add(new ProjectFile("android/res/values/color.xml"));
