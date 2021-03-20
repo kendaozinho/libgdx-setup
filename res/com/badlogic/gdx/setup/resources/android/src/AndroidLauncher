@@ -86,7 +86,7 @@ public class AndroidLauncher extends AndroidApplication implements AdsListener {
     // Create and setup the AdMob view
     this.adView = new AdView(this);
 
-    this.adView.setAdUnitId("ca-app-pub-1111111111111111/2222222222"); // set ads unit id
+    this.adView.setAdUnitId("ca-app-pub-1111111111111111/2222222222"); // set your ads unit id
 
     this.adView.setAdSize(AdSize.SMART_BANNER);
 
@@ -116,14 +116,17 @@ public class AndroidLauncher extends AndroidApplication implements AdsListener {
     // If you don't know the id, just look at the Android log. For example:
     // I/Ads: Use RequestConfiguration.Builder().setTestDeviceIds(Arrays.asList("8831A9CD6F6408098E0FAE18E6E2202A") to get test ads on this device.
     this.adView.loadAd(
-        new AdRequest.Builder()/*.addTestDevice("8831A9CD6F6408098E0FAE18E6E2202A")*/.build()
+        new AdRequest.Builder()
+            .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+            // .addTestDevice("8831A9CD6F6408098E0FAE18E6E2202A")
+            .build()
     );
 
     // Add AdMob into layout
     layout.addView(
       this.adView,
       new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT) {{
-        super.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+        super.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
       }}
     );
 

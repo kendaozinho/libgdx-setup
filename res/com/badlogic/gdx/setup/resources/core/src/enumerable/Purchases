@@ -9,7 +9,7 @@ public enum Purchases {
     this.value = value;
   }
 
-  public Music getValue() {
+  public String getValue() {
     return this.value;
   }
 }
