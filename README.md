@@ -32,7 +32,6 @@ List<String> incompatList = builder.buildProject(modules, dependencies);
 // The setup ui checks for these and pops up a dialog.
 ```
 
-
 The builder will generate the settings.gradle, build.gradle file, as well as alter all the platform specific files that reference dependencies/assets.
 
 Files Altered:
@@ -64,8 +63,19 @@ $ gradle run
 ```
 
 Generate .jar file (inside [this folder](./build/libs/))
-==================
+========================================================
 
 ```
 $ gradle build
+```
+
+Release
+=======
+
+After each release, [this file](./publish/gdx-setup.jar) is updated.
+
+To open it, just execute this command:
+
+```
+$ java -jar ./publish/gdx-setup.jar
 ```
