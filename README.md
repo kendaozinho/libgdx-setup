@@ -1,3 +1,6 @@
+## libgdx-setup
+This repository is a copy of [this one](https://github.com/libgdx/libgdx/tree/master/extensions/gdx-setup), however, with some peculiarities, such as the use of **Java 8** as default and the [libgdx-common](https://github.com/kendaozinho/libgdx-common) library.
+
 Libgdx gradle setup
 ===================
 
