@@ -1,10 +1,14 @@
 package %PACKAGE%;
 
 import android.annotation.SuppressLint;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.Settings;
+import android.util.Base64;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
@@ -48,13 +52,28 @@ public class AndroidLauncher extends AndroidApplication implements AdsListener {
     // ORIGINAL INITIALIZATION
     // initialize(new %MAIN_CLASS%(), new AndroidApplicationConfiguration());
 
+    String deviceId = Settings.Secure.getString(super.getContentResolver(), Settings.Secure.ANDROID_ID);
+
+    String secretKey = "unknown";
+    try {
+      PackageInfo packageInfo =
+          getPackageManager().getPackageInfo("%PACKAGE%", PackageManager.GET_SIGNATURES);
+      for (Signature signature : packageInfo.signatures) {
+        MessageDigest sha = MessageDigest.getInstance("SHA-1");
+        secretKey = Base64.encodeToString(sha.digest(signature.toByteArray()), Base64.DEFAULT).replace("\n", "");
+      }
+    } catch (Throwable t) {
+      throw new RuntimeException("Unable to get signatures: " + t);
+    }
+
     // Create layout
     RelativeLayout layout = new RelativeLayout(this);
 
     // Create libgdx view
     View gameView = super.initializeForView(
         new %MAIN_CLASS%(
-          Settings.Secure.getString(super.getContentResolver(), Settings.Secure.ANDROID_ID),
+          deviceId,
+          secretKey,
           this,
           new PurchaseManagerGoogleBilling(this)
         ),
@@ -97,9 +116,7 @@ public class AndroidLauncher extends AndroidApplication implements AdsListener {
     // If you don't know the id, just look at the Android log. For example:
     // I/Ads: Use RequestConfiguration.Builder().setTestDeviceIds(Arrays.asList("8831A9CD6F6408098E0FAE18E6E2202A") to get test ads on this device.
     this.adView.loadAd(
-        new AdRequest.Builder()
-            .addTestDevice("8831A9CD6F6408098E0FAE18E6E2202A")
-            .build()
+        new AdRequest.Builder()/*.addTestDevice("8831A9CD6F6408098E0FAE18E6E2202A")*/.build()
     );
 
     // Add AdMob into layout

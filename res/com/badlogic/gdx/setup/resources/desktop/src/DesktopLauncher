@@ -10,6 +10,6 @@ public class DesktopLauncher {
     config.title = "%APP_NAME%";
     config.width = 480;
     config.height = 800;
-    new LwjglApplication(new %MAIN_CLASS%("desktop"), config);
+    new LwjglApplication(new %MAIN_CLASS%("desktop", "iRXcZRTSAd8+a4nCieRlNwOjBlU="), config);
   }
 }

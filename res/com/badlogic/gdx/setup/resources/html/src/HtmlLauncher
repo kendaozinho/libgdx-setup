@@ -16,6 +16,6 @@ public class HtmlLauncher extends GwtApplication {
 
   @Override
   public ApplicationListener createApplicationListener() {
-    return new %MAIN_CLASS%("html");
+    return new %MAIN_CLASS%("html", "iRXcZRTSAd8+a4nCieRlNwOjBlU=");
   }
 }
