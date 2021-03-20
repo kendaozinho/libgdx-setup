@@ -8,9 +8,9 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import %PACKAGE%.assets.CustomAssetManager;
 import %PACKAGE%.payment.CustomPurchaseObserver;
 import %PACKAGE%.payment.base.CustomPurchaseManager;
-import %PACKAGE%.screen.base.BaseScreen;
+import com.kendao.libgdx.screen.base.CustomBaseScreen;
 
-public class MainScreen extends BaseScreen {
+public class MainScreen extends CustomBaseScreen {
   private Image image;
 
   public MainScreen() {
@@ -34,19 +34,7 @@ public class MainScreen extends BaseScreen {
   }
 
   @Override
-  public void update() {
-  }
-
-  @Override
-  protected void pause() {
-  }
-
-  @Override
-  protected void resume() {
-  }
-
-  @Override
-  protected void render() {
+  public void handleInput() {
     if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
       this.image.setY(this.image.getY() + 10);
     } else if (Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)) {
@@ -56,6 +44,22 @@ public class MainScreen extends BaseScreen {
     } else if (Gdx.input.isKeyJustPressed(Input.Keys.LEFT)) {
       this.image.setX(this.image.getX() - 10);
     }
+  }
+
+  @Override
+  public void update() {
+  }
+
+  @Override
+  protected void render() {
+  }
+
+  @Override
+  protected void pause() {
+  }
+
+  @Override
+  protected void resume() {
   }
 
   @Override

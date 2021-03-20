@@ -34,6 +34,7 @@ public class DependencyBank {
 	static String gsonVersion = "2.8.6";
 	static String adsVersion = "17.2.1"; // latest version without AndroidX
 	static String gdxPayVersion = "1.3.1";
+	static String libgdxCommonVersion = "0.0.2";
 
 	//Repositories
 	static String mavenLocal = "mavenLocal()";

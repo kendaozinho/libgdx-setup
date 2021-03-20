@@ -8,12 +8,12 @@ import com.badlogic.gdx.utils.Align;
 import %PACKAGE%.%MAIN_CLASS%;
 import %PACKAGE%.assets.CustomAssetManager;
 import %PACKAGE%.payment.base.CustomPurchaseManager;
-import %PACKAGE%.screen.base.BaseScreen;
-import %PACKAGE%.screen.base.ScreenManager;
 import %PACKAGE%.screen.main.MainScreen;
 import %PACKAGE%.storage.CustomPreferences;
+import com.kendao.libgdx.screen.base.CustomBaseScreen;
+import com.kendao.libgdx.screen.base.CustomScreenManager;
 
-public class SplashScreen extends BaseScreen {
+public class SplashScreen extends CustomBaseScreen {
   public SplashScreen() {
   }
 
@@ -46,14 +46,22 @@ public class SplashScreen extends BaseScreen {
             Actions.fadeOut(1f),
             Actions.delay(0.5f),
             Actions.run(
-                () -> ScreenManager.getInstance().setScreen(new MainScreen())
+                () -> CustomScreenManager.getInstance().setScreen(new MainScreen())
             )
         )
     );
   }
 
   @Override
+  public void handleInput() {
+  }
+
+  @Override
   public void update() {
+  }
+
+  @Override
+  protected void render() {
   }
 
   @Override
@@ -62,10 +70,6 @@ public class SplashScreen extends BaseScreen {
 
   @Override
   protected void resume() {
-  }
-
-  @Override
-  protected void render() {
   }
 
   @Override

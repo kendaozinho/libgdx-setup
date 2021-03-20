@@ -8,9 +8,9 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import %PACKAGE%.assets.CustomAssetManager;
 import %PACKAGE%.listener.AdsListener;
 import %PACKAGE%.payment.base.CustomPurchaseManager;
-import %PACKAGE%.screen.base.ScreenManager;
 import %PACKAGE%.screen.splash.SplashScreen;
 import %PACKAGE%.storage.CustomPreferences;
+import com.kendao.libgdx.screen.base.CustomScreenManager;
 
 import java.util.HashMap;
 
@@ -27,7 +27,7 @@ public class %MAIN_CLASS% extends ApplicationAdapter {
     this.deviceId = deviceId;
     this.adsListener = null;
 
-    this.instances.put(ScreenManager.class, new ScreenManager());
+    this.instances.put(CustomScreenManager.class, new CustomScreenManager());
     this.instances.put(CustomPurchaseManager.class, new CustomPurchaseManager());
   }
 
@@ -35,7 +35,7 @@ public class %MAIN_CLASS% extends ApplicationAdapter {
     this.deviceId = deviceId;
     this.adsListener = adsListener;
 
-    this.instances.put(ScreenManager.class, new ScreenManager());
+    this.instances.put(CustomScreenManager.class, new CustomScreenManager());
     this.instances.put(CustomPurchaseManager.class, new CustomPurchaseManager(purchaseManager));
   }
 
@@ -66,39 +66,46 @@ public class %MAIN_CLASS% extends ApplicationAdapter {
     } */
 
     // Open the splash screen and load all assets
-    ScreenManager.getInstance().setScreen(new SplashScreen());
+    CustomScreenManager.getInstance().setScreen(new SplashScreen());
   }
 
   @Override
   public void render() {
-    ScreenUtils.clear(0, 0, 0, 0);
-
-    float deltaTime = Gdx.graphics.getDeltaTime();
-    ScreenManager.getInstance().update(deltaTime);
-    ScreenManager.getInstance().render(deltaTime);
+    CustomScreenManager.getInstance().render();
   }
 
   @Override
   public void resize(int width, int height) {
-    ScreenManager.getInstance().resize(width, height);
+    CustomScreenManager.getInstance().resize(width, height);
   }
 
   @Override
   public void pause() {
-    ScreenManager.getInstance().pause();
+    CustomScreenManager.getInstance().pause();
   }
 
   @Override
   public void resume() {
-    ScreenManager.getInstance().resume();
+    CustomScreenManager.getInstance().resume();
   }
 
   @Override
   public void dispose() {
-    ScreenManager.getInstance().dispose();
+    CustomScreenManager.getInstance().dispose();
     CustomPurchaseManager.getInstance().dispose();
   }
 
+  @Override
+  public Integer getFullWidth() {
+    return 480;
+  }
+
+  @Override
+  public Integer getFullHeight() {
+    return 800;
+  }
+
+  @Override
   public <T> T getInstanceOf(Class<T> clazz) {
     Object instance = this.instances.get(clazz);
     return (instance == null ? null : (T) instance);

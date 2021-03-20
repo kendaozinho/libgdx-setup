@@ -72,6 +72,7 @@ public class BuildScriptHelper {
 		write(wr, "adsVersion = '" + DependencyBank.adsVersion + "'");
 		write(wr, "gdxControllersVersion = '" + DependencyBank.controllersVersion + "'");
 		write(wr, "gdxPayVersion = '" + DependencyBank.gdxPayVersion + "'");
+		write(wr, "libgdxCommonVersion = '" + DependencyBank.libgdxCommonVersion + "'");
 		write(wr, "}");
 		space(wr);
 		write(wr, "repositories {");
@@ -124,6 +125,7 @@ public class BuildScriptHelper {
 			case CORE:
 				write(wr, "implementation \"com.google.code.gson:gson:$gsonVersion\"");
 				write(wr, "implementation \"com.badlogicgames.gdxpay:gdx-pay-client:$gdxPayVersion\"");
+				write(wr, "implementation \"com.github.kendaozinho:libgdx-common:$libgdxCommonVersion\"");
 				break;
 			case HTML:
 				write(wr, "implementation \"com.badlogicgames.gdxpay:gdx-pay:$gdxPayVersion:sources\"");
