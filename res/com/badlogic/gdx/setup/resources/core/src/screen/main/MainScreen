@@ -5,8 +5,8 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import %PACKAGE%.payment.CustomPurchaseObserver;
-import %PACKAGE%.payment.base.CustomPurchaseManager;
 import com.kendao.libgdx.assets.CustomAssetManager;
+import com.kendao.libgdx.payment.base.CustomPurchaseManager;
 import com.kendao.libgdx.screen.base.CustomBaseScreen;
 import com.kendao.libgdx.scenes.scene2d.ui.CustomImage;
 
@@ -23,9 +23,8 @@ public class MainScreen extends CustomBaseScreen {
     this.image.addListener(new ClickListener(){
       @Override
       public void clicked(InputEvent event, float x, float y) {
-        if (CustomPurchaseManager.getInstance().getPurchaseManager() != null &&
-            CustomPurchaseManager.getInstance().getPurchaseManager().installed()) {
-          CustomPurchaseManager.getInstance().getPurchaseManager().purchase(CustomPurchaseObserver.ID_OF_ADS);
+        if (CustomPurchaseManager.getInstance().installed()) {
+          CustomPurchaseManager.getInstance().purchase(CustomPurchaseObserver.ID_OF_ADS);
         }
       }
     });

@@ -255,7 +255,6 @@ public class GdxSetup {
 		project.files.add(new ProjectFile("core/src/MainClass", "core/src/" + packageDir + "/" + mainClass + ".java", true));
 		project.files.add(new ProjectFile("core/src/listener/AdsListener", "core/src/" + packageDir + "/listener/AdsListener.java", true));
 		project.files.add(new ProjectFile("core/src/payment/CustomPurchaseObserver", "core/src/" + packageDir + "/payment/CustomPurchaseObserver.java", true));
-		project.files.add(new ProjectFile("core/src/payment/base/CustomPurchaseManager", "core/src/" + packageDir + "/payment/base/CustomPurchaseManager.java", true));
 		project.files.add(new ProjectFile("core/src/screen/main/MainScreen", "core/src/" + packageDir + "/screen/main/MainScreen.java", true));
 		project.files.add(new ProjectFile("core/src/screen/splash/SplashScreen", "core/src/" + packageDir + "/screen/splash/SplashScreen.java", true));
 		if (builder.modules.contains(ProjectType.HTML) && language.gwtSupported) {
