@@ -272,6 +272,12 @@ public class GdxSetup {
 		String assetPath = builder.modules.contains(ProjectType.ANDROID) ? "android/assets" : "core/assets";
 		project.files.add(new ProjectFile("android/assets/badlogic.jpg", assetPath + "/badlogic.jpg", false));
 
+		project.files.add(new ProjectFile("android/assets/ui/default-font.fnt", assetPath + "/ui/default-font.fnt", false));
+		project.files.add(new ProjectFile("android/assets/ui/default-font.png", assetPath + "/ui/default-font.png", false));
+		project.files.add(new ProjectFile("android/assets/ui/default-skin.atlas", assetPath + "/ui/default-skin.atlas", false));
+		project.files.add(new ProjectFile("android/assets/ui/default-skin.json", assetPath + "/ui/default-skin.json", false));
+		project.files.add(new ProjectFile("android/assets/ui/default-skin.png", assetPath + "/ui/default-skin.png", false));
+
 		// android project
 		if (builder.modules.contains(ProjectType.ANDROID)) {
 			project.files.add(new ProjectFile("android/res/values/color.xml"));
