@@ -1,0 +1,106 @@
+package %PACKAGE%;
+
+import com.badlogic.gdx.Application;
+import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.pay.PurchaseManager;
+import com.badlogic.gdx.utils.ScreenUtils;
+import %PACKAGE%.assets.CustomAssetManager;
+import %PACKAGE%.listener.AdsListener;
+import %PACKAGE%.payment.base.CustomPurchaseManager;
+import %PACKAGE%.screen.base.ScreenManager;
+import %PACKAGE%.screen.splash.SplashScreen;
+import %PACKAGE%.storage.CustomPreferences;
+
+import java.util.HashMap;
+
+public class %MAIN_CLASS% extends ApplicationAdapter {
+  public static final Integer FULL_WIDTH = 480;
+  public static final Integer FULL_HEIGHT = 800;
+
+  private final String deviceId;
+  private final AdsListener adsListener;
+
+  private HashMap<Class, Object> instances = new HashMap();
+
+  public %MAIN_CLASS%(String deviceId) {
+    this.deviceId = deviceId;
+    this.adsListener = null;
+
+    this.instances.put(ScreenManager.class, new ScreenManager());
+    this.instances.put(CustomPurchaseManager.class, new CustomPurchaseManager());
+  }
+
+  public %MAIN_CLASS%(String deviceId, AdsListener adsListener, PurchaseManager purchaseManager) {
+    this.deviceId = deviceId;
+    this.adsListener = adsListener;
+
+    this.instances.put(ScreenManager.class, new ScreenManager());
+    this.instances.put(CustomPurchaseManager.class, new CustomPurchaseManager(purchaseManager));
+  }
+
+  public static %MAIN_CLASS% getInstance() {
+    return ((%MAIN_CLASS%) Gdx.app.getApplicationListener());
+  }
+
+  @Override
+  public void create() {
+    // Set log level
+    Gdx.app.setLogLevel(Application.LOG_DEBUG);
+
+    // Disable hardware back button
+    Gdx.input.setCatchBackKey(true);
+
+    // Load asset manager
+    this.instances.put(CustomAssetManager.class, new CustomAssetManager());
+
+    // Load default skin
+    // this.instances.put(CustomSkin.class, new CustomSkin());
+
+    // Load preferences
+    this.instances.put(CustomPreferences.class, new CustomPreferences());
+
+    // Set fullscreen if is Desktop
+    /* if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
+      Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode());
+    } */
+
+    // Open the splash screen and load all assets
+    ScreenManager.getInstance().setScreen(new SplashScreen());
+  }
+
+  @Override
+  public void render() {
+    ScreenUtils.clear(0, 0, 0, 0);
+
+    float deltaTime = Gdx.graphics.getDeltaTime();
+    ScreenManager.getInstance().update(deltaTime);
+    ScreenManager.getInstance().render(deltaTime);
+  }
+
+  @Override
+  public void resize(int width, int height) {
+    ScreenManager.getInstance().resize(width, height);
+  }
+
+  @Override
+  public void pause() {
+    ScreenManager.getInstance().pause();
+  }
+
+  @Override
+  public void resume() {
+    ScreenManager.getInstance().resume();
+  }
+
+  @Override
+  public void dispose() {
+    ScreenManager.getInstance().dispose();
+    CustomPurchaseManager.getInstance().dispose();
+  }
+
+  public <T> T getInstanceOf(Class<T> clazz) {
+    Object instance = this.instances.get(clazz);
+    return (instance == null ? null : (T) instance);
+  }
+}

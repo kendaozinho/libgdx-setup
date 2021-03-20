@@ -1,0 +1,11 @@
+image: openjdk:8
+
+pipelines:
+  branches:
+    master:
+      - step:
+          name: Build and Test
+          caches:
+            - gradle
+          script:
+            - bash ./gradlew build

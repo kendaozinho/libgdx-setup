@@ -1,0 +1,37 @@
+package %PACKAGE%.assets;
+
+import com.badlogic.gdx.Application;
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.utils.Logger;
+import %PACKAGE%.%MAIN_CLASS%;
+
+public class CustomAssetManager extends AssetManager {
+  private final Logger logger = new Logger(this.toString(), Application.LOG_DEBUG);
+
+  public CustomAssetManager() {
+    super();
+  }
+
+  public static CustomAssetManager getInstance() {
+    return %MAIN_CLASS%.getInstance().getInstanceOf(CustomAssetManager.class);
+  }
+
+  public void loadAllAssets() {
+    try {
+      logger.info("Loading assets...");
+
+      super.load("badlogic.jpg", Texture.class);
+
+      logger.info("All assets loaded successfully!");
+    } catch (Throwable t) {
+      logger.error("Unable to load all assets!", t);
+    } finally {
+      finishLoading();
+    }
+  }
+
+  public Texture getBadLogicTexture() {
+    return super.get("badlogic.jpg", Texture.class);
+  }
+}

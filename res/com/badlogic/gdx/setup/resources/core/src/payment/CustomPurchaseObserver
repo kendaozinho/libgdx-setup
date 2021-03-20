@@ -1,0 +1,58 @@
+package %PACKAGE%.payment;
+
+import com.badlogic.gdx.pay.PurchaseObserver;
+import com.badlogic.gdx.pay.Transaction;
+import %PACKAGE%.storage.CustomPreferences;
+
+public class CustomPurchaseObserver implements PurchaseObserver {
+  public static final String ID_OF_ADS = "ads";
+
+  @Override
+  public void handleInstall() {
+    System.out.println("Google Billing - INSTALL with success!");
+  }
+
+  @Override
+  public void handleInstallError(Throwable e) {
+    System.err.println("Google Billing - INSTALL with error -> " + e);
+  }
+
+  @Override
+  public void handleRestore(Transaction[] transactions) {
+    System.out.println("Google Billing - RESTORE with success!");
+
+    CustomPreferences.getInstance().setPurchasesRestored(true);
+
+    for (Transaction transaction : transactions) {
+      if (transaction.isPurchased()) {
+        if (transaction.getIdentifier().equals(CustomPurchaseObserver.ID_OF_ADS)) {
+          // ?
+        }
+      }
+    }
+  }
+
+  @Override
+  public void handleRestoreError(Throwable e) {
+    System.err.println("Google Billing - RESTORE with error -> " + e);
+  }
+
+  @Override
+  public void handlePurchase(Transaction transaction) {
+    System.out.println("Google Billing - PURCHASE with success!");
+
+    if (transaction.getIdentifier().equals(CustomPurchaseObserver.ID_OF_ADS)) {
+      // ?
+    }
+  }
+
+  @Override
+  public void handlePurchaseError(Throwable e) {
+    System.err.println("Google Billing - PURCHASE with error -> " + e);
+  }
+
+  @Override
+  public void handlePurchaseCanceled() {
+    System.out.println("Google Billing - PURCHASE is canceled!");
+  }
+}

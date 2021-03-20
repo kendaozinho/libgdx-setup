@@ -1,0 +1,74 @@
+package %PACKAGE%.screen.splash;
+
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.utils.Align;
+import %PACKAGE%.%MAIN_CLASS%;
+import %PACKAGE%.assets.CustomAssetManager;
+import %PACKAGE%.payment.base.CustomPurchaseManager;
+import %PACKAGE%.screen.base.BaseScreen;
+import %PACKAGE%.screen.base.ScreenManager;
+import %PACKAGE%.screen.main.MainScreen;
+import %PACKAGE%.storage.CustomPreferences;
+
+public class SplashScreen extends BaseScreen {
+  public SplashScreen() {
+  }
+
+  @Override
+  protected void load() {
+    Label label = new Label("%APP_NAME%", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+    label.setFontScale(3f);
+    label.setPosition((%MAIN_CLASS%.FULL_WIDTH / 2) - (label.getWidth() / 2), (%MAIN_CLASS%.FULL_HEIGHT / 2) - (label.getHeight() / 2));
+    label.setAlignment(Align.center);
+    label.getColor().a = 0f; // hide label
+
+    super.getHudStage().addActor(label);
+
+    label.addAction(
+        Actions.sequence(
+            Actions.delay(0.5f),
+            Actions.fadeIn(1f),
+            Actions.run(
+                () -> {
+                  CustomAssetManager.getInstance().loadAllAssets();
+
+                    if (!CustomPreferences.getInstance().isPurchasesRestored() &&
+                        CustomPurchaseManager.getInstance().getPurchaseManager() != null &&
+                        CustomPurchaseManager.getInstance().getPurchaseManager().installed()) {
+                      CustomPurchaseManager.getInstance().getPurchaseManager().purchaseRestore();
+                    }
+                }
+            ),
+            Actions.delay(1f), // Waiting to load the assets
+            Actions.fadeOut(1f),
+            Actions.delay(0.5f),
+            Actions.run(
+                () -> ScreenManager.getInstance().setScreen(new MainScreen())
+            )
+        )
+    );
+  }
+
+  @Override
+  public void update() {
+  }
+
+  @Override
+  protected void pause() {
+  }
+
+  @Override
+  protected void resume() {
+  }
+
+  @Override
+  protected void render() {
+  }
+
+  @Override
+  protected void dispose() {
+  }
+}
