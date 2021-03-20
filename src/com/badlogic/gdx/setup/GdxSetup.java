@@ -257,6 +257,9 @@ public class GdxSetup {
 		project.files.add(new ProjectFile("core/src/payment/CustomPurchaseObserver", "core/src/" + packageDir + "/payment/CustomPurchaseObserver.java", true));
 		project.files.add(new ProjectFile("core/src/screen/main/MainScreen", "core/src/" + packageDir + "/screen/main/MainScreen.java", true));
 		project.files.add(new ProjectFile("core/src/screen/splash/SplashScreen", "core/src/" + packageDir + "/screen/splash/SplashScreen.java", true));
+		project.files.add(new ProjectFile("core/src/enumerable/Assets", "core/src/" + packageDir + "/enumerable/Assets.java", true));
+		project.files.add(new ProjectFile("core/src/enumerable/Preferences", "core/src/" + packageDir + "/enumerable/Preferences.java", true));
+		project.files.add(new ProjectFile("core/src/enumerable/Purchases", "core/src/" + packageDir + "/enumerable/Purchases.java", true));
 		if (builder.modules.contains(ProjectType.HTML) && language.gwtSupported) {
 			project.files.add(new ProjectFile("core/CoreGdxDefinition", "core/src/" + mainClass + ".gwt.xml", true));
 		}

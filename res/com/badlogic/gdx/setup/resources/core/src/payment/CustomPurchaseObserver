@@ -2,11 +2,10 @@ package %PACKAGE%.payment;
 
 import com.badlogic.gdx.pay.PurchaseObserver;
 import com.badlogic.gdx.pay.Transaction;
-import com.kendao.libgdx.storage.CustomPreferences;
+import %PACKAGE%.enumerable.Preferences;
+import %PACKAGE%.enumerable.Purchases;
 
 public class CustomPurchaseObserver implements PurchaseObserver {
-  public static final String ID_OF_ADS = "ads";
-
   @Override
   public void handleInstall() {
     System.out.println("Google Billing - INSTALL with success!");
@@ -21,11 +20,11 @@ public class CustomPurchaseObserver implements PurchaseObserver {
   public void handleRestore(Transaction[] transactions) {
     System.out.println("Google Billing - RESTORE with success!");
 
-    CustomPreferences.getInstance().setPropertyAsBoolean("purchases-restored", true);
+    Preferences.PURCHASES_RESTORED.setPropertyAsBoolean(true);
 
     for (Transaction transaction : transactions) {
       if (transaction.isPurchased()) {
-        if (transaction.getIdentifier().equals(CustomPurchaseObserver.ID_OF_ADS)) {
+        if (transaction.getIdentifier().equals(Purchases.PURCHASE_ID.getValue())) {
           // ?
         }
       }
@@ -41,7 +40,7 @@ public class CustomPurchaseObserver implements PurchaseObserver {
   public void handlePurchase(Transaction transaction) {
     System.out.println("Google Billing - PURCHASE with success!");
 
-    if (transaction.getIdentifier().equals(CustomPurchaseObserver.ID_OF_ADS)) {
+    if (transaction.getIdentifier().equals(Purchases.PURCHASE_ID.getValue())) {
       // ?
     }
   }

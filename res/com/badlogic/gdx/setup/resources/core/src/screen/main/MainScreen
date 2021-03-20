@@ -5,8 +5,8 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import %PACKAGE%.%MAIN_CLASS%;
-import %PACKAGE%.payment.CustomPurchaseObserver;
-import com.kendao.libgdx.assets.CustomAssetManager;
+import %PACKAGE%.enumerable.Assets;
+import %PACKAGE%.enumerable.Purchases;
 import com.kendao.libgdx.payment.base.CustomPurchaseManager;
 import com.kendao.libgdx.screen.base.CustomBaseScreen;
 import com.kendao.libgdx.scenes.scene2d.ui.CustomImageButton;
@@ -22,7 +22,7 @@ public class MainScreen extends CustomBaseScreen {
   @Override
   protected void load() {
     this.image = new CustomImageButton(
-        CustomAssetManager.getInstance().getTexture("badlogic.jpg"),
+        Assets.BAD_LOGIC.getValueAsTexture(),
         new ClickListener() {
           @Override
           public void clicked(InputEvent event, float x, float y) {
@@ -62,7 +62,7 @@ public class MainScreen extends CustomBaseScreen {
           @Override
           public void clicked(InputEvent event, float x, float y) {
             if (CustomPurchaseManager.getInstance().installed()) {
-              CustomPurchaseManager.getInstance().purchase(CustomPurchaseObserver.ID_OF_ADS);
+              CustomPurchaseManager.getInstance().purchase(Purchases.PURCHASE_ID.getValue());
             }
           }
         }

@@ -5,6 +5,7 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.pay.OfferType;
 import com.badlogic.gdx.pay.PurchaseManager;
+import %PACKAGE%.enumerable.Purchases;
 import %PACKAGE%.listener.AdsListener;
 import %PACKAGE%.payment.CustomPurchaseObserver;
 import %PACKAGE%.screen.splash.SplashScreen;
@@ -58,7 +59,7 @@ public class %MAIN_CLASS% extends ApplicationAdapter implements CustomGameListen
           super.install(
               new CustomPurchaseObserver(),
               new HashMap<OfferType, String>() {{
-                super.put(OfferType.ENTITLEMENT, CustomPurchaseObserver.ID_OF_ADS);
+                super.put(OfferType.ENTITLEMENT, Purchases.PURCHASE_ID.getValue());
               }}
           );
         }}
