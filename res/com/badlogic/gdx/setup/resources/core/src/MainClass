@@ -5,19 +5,16 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.pay.PurchaseManager;
 import com.badlogic.gdx.utils.ScreenUtils;
-import %PACKAGE%.assets.CustomAssetManager;
 import %PACKAGE%.listener.AdsListener;
 import %PACKAGE%.payment.base.CustomPurchaseManager;
 import %PACKAGE%.screen.splash.SplashScreen;
-import %PACKAGE%.storage.CustomPreferences;
+import com.kendao.libgdx.assets.CustomAssetManager;
 import com.kendao.libgdx.screen.base.CustomScreenManager;
+import com.kendao.libgdx.storage.CustomPreferences;
 
 import java.util.HashMap;
 
 public class %MAIN_CLASS% extends ApplicationAdapter {
-  public static final Integer FULL_WIDTH = 480;
-  public static final Integer FULL_HEIGHT = 800;
-
   private final String deviceId;
   private final AdsListener adsListener;
 
@@ -58,7 +55,7 @@ public class %MAIN_CLASS% extends ApplicationAdapter {
     // this.instances.put(CustomSkin.class, new CustomSkin());
 
     // Load preferences
-    this.instances.put(CustomPreferences.class, new CustomPreferences());
+    this.instances.put(CustomPreferences.class, new CustomPreferences("%APP_NAME%"));
 
     // Set fullscreen if is Desktop
     /* if (Gdx.app.getType() == Application.ApplicationType.Desktop) {

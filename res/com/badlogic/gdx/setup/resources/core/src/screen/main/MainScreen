@@ -5,9 +5,9 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import %PACKAGE%.assets.CustomAssetManager;
 import %PACKAGE%.payment.CustomPurchaseObserver;
 import %PACKAGE%.payment.base.CustomPurchaseManager;
+import com.kendao.libgdx.assets.CustomAssetManager;
 import com.kendao.libgdx.screen.base.CustomBaseScreen;
 
 public class MainScreen extends CustomBaseScreen {
@@ -18,7 +18,7 @@ public class MainScreen extends CustomBaseScreen {
 
   @Override
   protected void load() {
-    this.image = new Image(CustomAssetManager.getInstance().getBadLogicTexture());
+    this.image = new Image(CustomAssetManager.getInstance().getTexture("badlogic.jpg"));
 
     this.image.addListener(new ClickListener(){
       @Override

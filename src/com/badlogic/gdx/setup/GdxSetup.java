@@ -253,13 +253,11 @@ public class GdxSetup {
 		// core project
 		project.files.add(new ProjectFile("core/build.gradle"));
 		project.files.add(new ProjectFile("core/src/MainClass", "core/src/" + packageDir + "/" + mainClass + ".java", true));
-		project.files.add(new ProjectFile("core/src/assets/CustomAssetManager", "core/src/" + packageDir + "/assets/CustomAssetManager.java", true));
 		project.files.add(new ProjectFile("core/src/listener/AdsListener", "core/src/" + packageDir + "/listener/AdsListener.java", true));
 		project.files.add(new ProjectFile("core/src/payment/CustomPurchaseObserver", "core/src/" + packageDir + "/payment/CustomPurchaseObserver.java", true));
 		project.files.add(new ProjectFile("core/src/payment/base/CustomPurchaseManager", "core/src/" + packageDir + "/payment/base/CustomPurchaseManager.java", true));
 		project.files.add(new ProjectFile("core/src/screen/main/MainScreen", "core/src/" + packageDir + "/screen/main/MainScreen.java", true));
 		project.files.add(new ProjectFile("core/src/screen/splash/SplashScreen", "core/src/" + packageDir + "/screen/splash/SplashScreen.java", true));
-		project.files.add(new ProjectFile("core/src/storage/CustomPreferences", "core/src/" + packageDir + "/storage/CustomPreferences.java", true));
 		if (builder.modules.contains(ProjectType.HTML) && language.gwtSupported) {
 			project.files.add(new ProjectFile("core/CoreGdxDefinition", "core/src/" + mainClass + ".gwt.xml", true));
 		}

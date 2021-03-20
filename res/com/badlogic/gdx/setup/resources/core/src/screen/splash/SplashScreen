@@ -6,12 +6,12 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Align;
 import %PACKAGE%.%MAIN_CLASS%;
-import %PACKAGE%.assets.CustomAssetManager;
 import %PACKAGE%.payment.base.CustomPurchaseManager;
 import %PACKAGE%.screen.main.MainScreen;
-import %PACKAGE%.storage.CustomPreferences;
+import com.kendao.libgdx.assets.CustomAssetManager;
 import com.kendao.libgdx.screen.base.CustomBaseScreen;
 import com.kendao.libgdx.screen.base.CustomScreenManager;
+import com.kendao.libgdx.storage.CustomPreferences;
 
 public class SplashScreen extends CustomBaseScreen {
   public SplashScreen() {
@@ -21,7 +21,7 @@ public class SplashScreen extends CustomBaseScreen {
   protected void load() {
     Label label = new Label("%APP_NAME%", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
     label.setFontScale(3f);
-    label.setPosition((%MAIN_CLASS%.FULL_WIDTH / 2) - (label.getWidth() / 2), (%MAIN_CLASS%.FULL_HEIGHT / 2) - (label.getHeight() / 2));
+    label.setPosition((%MAIN_CLASS%.getInstance().getFullWidth() / 2) - (label.getWidth() / 2), (%MAIN_CLASS%.getInstance().getFullHeight() / 2) - (label.getHeight() / 2));
     label.setAlignment(Align.center);
     label.getColor().a = 0f; // hide label
 
@@ -35,11 +35,11 @@ public class SplashScreen extends CustomBaseScreen {
                 () -> {
                   CustomAssetManager.getInstance().loadAllAssets();
 
-                    if (!CustomPreferences.getInstance().isPurchasesRestored() &&
-                        CustomPurchaseManager.getInstance().getPurchaseManager() != null &&
-                        CustomPurchaseManager.getInstance().getPurchaseManager().installed()) {
-                      CustomPurchaseManager.getInstance().getPurchaseManager().purchaseRestore();
-                    }
+                  if (!CustomPreferences.getInstance().getPropertyAsBoolean("purchases-restored", false) &&
+                      CustomPurchaseManager.getInstance().getPurchaseManager() != null &&
+                      CustomPurchaseManager.getInstance().getPurchaseManager().installed()) {
+                    CustomPurchaseManager.getInstance().getPurchaseManager().purchaseRestore();
+                  }
                 }
             ),
             Actions.delay(1f), // Waiting to load the assets
