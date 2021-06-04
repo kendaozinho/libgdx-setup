@@ -1,6 +1,6 @@
 android {
     buildToolsVersion "%BUILD_TOOLS_VERSION%"
-    compileSdkVersion "%API_LEVEL%"
+    compileSdkVersion %API_LEVEL%
     sourceSets {
         main {
             manifest.srcFile 'AndroidManifest.xml'
@@ -18,8 +18,8 @@ android {
     }
     defaultConfig {
         applicationId "%PACKAGE%"
-        minSdkVersion "%MIN_API_LEVEL%"
-        targetSdkVersion "%API_LEVEL%"
+        minSdkVersion %MIN_API_LEVEL%
+        targetSdkVersion %API_LEVEL%
         versionCode 1
         versionName "0.0.1"
     }
