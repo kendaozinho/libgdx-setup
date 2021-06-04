@@ -15,18 +15,18 @@
  ******************************************************************************/
 
 plugins {
-	id 'application'
+    id 'application'
 }
 
 application {
-	mainClassName = 'com.badlogic.gdx.setup.GdxSetup'
+    mainClassName = 'com.badlogic.gdx.setup.GdxSetup'
 }
 
 jar {
-	archiveName = 'gdx-setup.jar'
-	manifest {
-		attributes 'Main-Class': project.mainClassName
-	}
+    archiveName = 'gdx-setup.jar'
+    manifest {
+        attributes 'Main-Class': project.mainClassName
+    }
 }
 
 sourceSets {
@@ -35,7 +35,7 @@ sourceSets {
             srcDir 'src/'
         }
         resources {
-            srcDir 'res/' 
+            srcDir 'res/'
         }
     }
 }
